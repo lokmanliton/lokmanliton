@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.9.13 on win32)" generated="20220807 15:09:04.745" rpa="false" schemaversion="3">
+<suite id="s1" name="demoBlazeSuite" source="f:\Automation-Study\RF\demoblaze\demoBlazeSuite.robot">
+<kw name="Launch Application" library="systemResource" type="SETUP">
+<arg>https://www.demoblaze.com/index.html</arg>
+<arg>//*[@class="carousel-item active"]</arg>
+<kw name="Open Browser" library="Selenium2Library">
+<arg>${url}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220807 15:09:05.095" level="INFO">Opening browser 'chrome' to base url 'https://www.demoblaze.com/index.html'.</msg>
+<status status="PASS" starttime="20220807 15:09:05.094" endtime="20220807 15:09:09.195"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${initLoc}</arg>
+<arg>40</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220807 15:09:09.196" endtime="20220807 15:09:09.230"/>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20220807 15:09:09.230" endtime="20220807 15:09:09.350"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:05.094" endtime="20220807 15:09:09.351"/>
+</kw>
+<test id="s1-t1" name="Sign Up to blazedemo" line="9">
+<kw name="Generate Unique Username" library="blazeResources" type="SETUP">
+<kw name="Get Time" library="BuiltIn">
+<var>${number}</var>
+<arg>epoch</arg>
+<doc>Returns the given time in the requested format.</doc>
+<msg timestamp="20220807 15:09:09.354" level="INFO">${number} = 1659863349</msg>
+<status status="PASS" starttime="20220807 15:09:09.354" endtime="20220807 15:09:09.355"/>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<var>${validUname}</var>
+<arg>${uname}+${number}</arg>
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<msg timestamp="20220807 15:09:09.355" level="INFO">${validUname} = Lokman+1659863349</msg>
+<status status="PASS" starttime="20220807 15:09:09.355" endtime="20220807 15:09:09.356"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${validUname}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20220807 15:09:09.357" level="INFO">${validUname} = Lokman+1659863349</msg>
+<status status="PASS" starttime="20220807 15:09:09.356" endtime="20220807 15:09:09.357"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:09.353" endtime="20220807 15:09:09.357"/>
+</kw>
+<kw name="Sign Up in Blazedemo" library="blazeResources">
+<arg>Sign up successful.</arg>
+<kw name="Click Element" library="Selenium2Library">
+<arg>id=signin2</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:09.360" level="INFO">Clicking element 'id=signin2'.</msg>
+<status status="PASS" starttime="20220807 15:09:09.359" endtime="20220807 15:09:09.467"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>id=sign-username</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220807 15:09:09.468" endtime="20220807 15:09:09.809"/>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<arg>id=sign-username</arg>
+<arg>${validUname}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:09.810" level="INFO">Typing text 'Lokman+1659863349' into text field 'id=sign-username'.</msg>
+<status status="PASS" starttime="20220807 15:09:09.810" endtime="20220807 15:09:09.956"/>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<arg>id=sign-password</arg>
+<arg>qaz3698</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:09.957" level="INFO">Typing text 'qaz3698' into text field 'id=sign-password'.</msg>
+<status status="PASS" starttime="20220807 15:09:09.956" endtime="20220807 15:09:10.053"/>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<arg>//*[@id="signInModal"]//*[@class="btn btn-primary"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:10.054" level="INFO">Clicking element '//*[@id="signInModal"]//*[@class="btn btn-primary"]'.</msg>
+<status status="PASS" starttime="20220807 15:09:10.053" endtime="20220807 15:09:10.094"/>
+</kw>
+<kw name="Handle Alert" library="Selenium2Library">
+<var>${actMsg}</var>
+<doc>Handles the current alert and returns its message.</doc>
+<msg timestamp="20220807 15:09:10.095" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
+<msg timestamp="20220807 15:09:11.154" level="INFO">${actMsg} = Sign up successful.</msg>
+<status status="PASS" starttime="20220807 15:09:10.095" endtime="20220807 15:09:11.154"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${expMsg}</arg>
+<arg>${actMsg}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20220807 15:09:11.155" endtime="20220807 15:09:11.156"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220807 15:09:16.160" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20220807 15:09:11.157" endtime="20220807 15:09:16.160"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>//*[@id="signInModal"]//*[@class="btn btn-secondary"]</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Click Element" library="Selenium2Library">
+<arg>//*[@id="signInModal"]//*[@class="btn btn-secondary"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:16.161" level="INFO">Clicking element '//*[@id="signInModal"]//*[@class="btn btn-secondary"]'.</msg>
+<msg timestamp="20220807 15:09:16.590" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-14.png"&gt;&lt;img src="selenium-screenshot-14.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20220807 15:09:16.590" level="FAIL">ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=104.0.5112.81)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C278B3+2193587]
+	Ordinal0 [0x00BC0681+1771137]
+	Ordinal0 [0x00AD4070+802928]
+	Ordinal0 [0x00B03533+996659]
+	Ordinal0 [0x00AF9223+954915]
+	Ordinal0 [0x00B1D7AC+1103788]
+	Ordinal0 [0x00AF8C04+953348]
+	Ordinal0 [0x00B1D9C4+1104324]
+	Ordinal0 [0x00B2DAE2+1170146]
+	Ordinal0 [0x00B1D5C6+1103302]
+	Ordinal0 [0x00AF77E0+948192]
+	Ordinal0 [0x00AF86E6+952038]
+	GetHandleVerifier [0x00ED0CB2+2738370]
+	GetHandleVerifier [0x00EC21B8+2678216]
+	GetHandleVerifier [0x00CB17AA+512954]
+	GetHandleVerifier [0x00CB0856+509030]
+	Ordinal0 [0x00BC743B+1799227]
+	Ordinal0 [0x00BCBB68+1817448]
+	Ordinal0 [0x00BCBC55+1817685]
+	Ordinal0 [0x00BD5230+1856048]
+	BaseThreadInitThunk [0x7661FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x772F7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x772F7A6E+238]
+</msg>
+<status status="FAIL" starttime="20220807 15:09:16.161" endtime="20220807 15:09:16.593"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:16.160" endtime="20220807 15:09:16.593"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220807 15:09:18.604" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20220807 15:09:16.594" endtime="20220807 15:09:18.604"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:09.358" endtime="20220807 15:09:18.604"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:09.351" endtime="20220807 15:09:18.605"/>
+</test>
+<test id="s1-t2" name="Sign Up With Existing User" line="13">
+<kw name="Sign Up in Blazedemo" library="blazeResources">
+<arg>This user already exist.</arg>
+<kw name="Click Element" library="Selenium2Library">
+<arg>id=signin2</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:18.611" level="INFO">Clicking element 'id=signin2'.</msg>
+<status status="PASS" starttime="20220807 15:09:18.611" endtime="20220807 15:09:18.651"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>id=sign-username</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220807 15:09:18.651" endtime="20220807 15:09:18.905"/>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<arg>id=sign-username</arg>
+<arg>${validUname}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:18.905" level="INFO">Typing text 'Lokman+1659863349' into text field 'id=sign-username'.</msg>
+<status status="PASS" starttime="20220807 15:09:18.905" endtime="20220807 15:09:19.015"/>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<arg>id=sign-password</arg>
+<arg>qaz3698</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:19.016" level="INFO">Typing text 'qaz3698' into text field 'id=sign-password'.</msg>
+<status status="PASS" starttime="20220807 15:09:19.016" endtime="20220807 15:09:19.107"/>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<arg>//*[@id="signInModal"]//*[@class="btn btn-primary"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:19.108" level="INFO">Clicking element '//*[@id="signInModal"]//*[@class="btn btn-primary"]'.</msg>
+<status status="PASS" starttime="20220807 15:09:19.108" endtime="20220807 15:09:19.149"/>
+</kw>
+<kw name="Handle Alert" library="Selenium2Library">
+<var>${actMsg}</var>
+<doc>Handles the current alert and returns its message.</doc>
+<msg timestamp="20220807 15:09:19.150" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
+<msg timestamp="20220807 15:09:20.182" level="INFO">${actMsg} = This user already exist.</msg>
+<status status="PASS" starttime="20220807 15:09:19.149" endtime="20220807 15:09:20.182"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${expMsg}</arg>
+<arg>${actMsg}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20220807 15:09:20.182" endtime="20220807 15:09:20.183"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220807 15:09:25.186" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20220807 15:09:20.184" endtime="20220807 15:09:25.186"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>//*[@id="signInModal"]//*[@class="btn btn-secondary"]</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Click Element" library="Selenium2Library">
+<arg>//*[@id="signInModal"]//*[@class="btn btn-secondary"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:25.187" level="INFO">Clicking element '//*[@id="signInModal"]//*[@class="btn btn-secondary"]'.</msg>
+<status status="PASS" starttime="20220807 15:09:25.187" endtime="20220807 15:09:25.230"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:25.186" endtime="20220807 15:09:25.230"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220807 15:09:27.234" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20220807 15:09:25.231" endtime="20220807 15:09:27.234"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:18.610" endtime="20220807 15:09:27.234"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:18.608" endtime="20220807 15:09:27.234"/>
+</test>
+<test id="s1-t3" name="Login Check with Invalid Credential" line="16">
+<kw name="Login in Blazedemo" library="blazeResources">
+<arg>testlokman11</arg>
+<kw name="Click Element" library="Selenium2Library">
+<arg>id=login2</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:27.239" level="INFO">Clicking element 'id=login2'.</msg>
+<status status="PASS" starttime="20220807 15:09:27.239" endtime="20220807 15:09:27.285"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>id=loginusername</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220807 15:09:27.286" endtime="20220807 15:09:27.548"/>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<arg>id=loginusername</arg>
+<arg>${useName}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:27.548" level="INFO">Typing text 'testlokman11' into text field 'id=loginusername'.</msg>
+<status status="PASS" starttime="20220807 15:09:27.548" endtime="20220807 15:09:27.662"/>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<arg>id=loginpassword</arg>
+<arg>qaz3698</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:27.664" level="INFO">Typing text 'qaz3698' into text field 'id=loginpassword'.</msg>
+<status status="PASS" starttime="20220807 15:09:27.663" endtime="20220807 15:09:27.796"/>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<arg>//*[@id="logInModal"]//*[@class="btn btn-primary"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:27.797" level="INFO">Clicking element '//*[@id="logInModal"]//*[@class="btn btn-primary"]'.</msg>
+<status status="PASS" starttime="20220807 15:09:27.796" endtime="20220807 15:09:27.850"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:27.237" endtime="20220807 15:09:27.851"/>
+</kw>
+<kw name="Verify Login for Invalid" library="blazeResources">
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220807 15:09:29.858" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20220807 15:09:27.853" endtime="20220807 15:09:29.858"/>
+</kw>
+<kw name="Handle Alert" library="Selenium2Library">
+<var>${actErr}</var>
+<doc>Handles the current alert and returns its message.</doc>
+<msg timestamp="20220807 15:09:29.858" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
+<msg timestamp="20220807 15:09:29.864" level="INFO">${actErr} = User does not exist.</msg>
+<status status="PASS" starttime="20220807 15:09:29.858" endtime="20220807 15:09:29.864"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${actErr}</arg>
+<arg>User does not exist.</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20220807 15:09:29.864" endtime="20220807 15:09:29.865"/>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<arg>//*[@id="logInModal"]//*[@class="btn btn-secondary"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:29.866" level="INFO">Clicking element '//*[@id="logInModal"]//*[@class="btn btn-secondary"]'.</msg>
+<status status="PASS" starttime="20220807 15:09:29.865" endtime="20220807 15:09:29.950"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220807 15:09:31.959" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20220807 15:09:29.950" endtime="20220807 15:09:31.959"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:27.852" endtime="20220807 15:09:31.959"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:27.236" endtime="20220807 15:09:31.960"/>
+</test>
+<test id="s1-t4" name="Login with valid Credential" line="20">
+<kw name="Login in Blazedemo" library="blazeResources">
+<arg>${validUname}</arg>
+<kw name="Click Element" library="Selenium2Library">
+<arg>id=login2</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:31.964" level="INFO">Clicking element 'id=login2'.</msg>
+<status status="PASS" starttime="20220807 15:09:31.963" endtime="20220807 15:09:32.009"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>id=loginusername</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220807 15:09:32.009" endtime="20220807 15:09:32.257"/>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<arg>id=loginusername</arg>
+<arg>${useName}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:32.257" level="INFO">Typing text 'Lokman+1659863349' into text field 'id=loginusername'.</msg>
+<status status="PASS" starttime="20220807 15:09:32.257" endtime="20220807 15:09:32.370"/>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<arg>id=loginpassword</arg>
+<arg>qaz3698</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:32.370" level="INFO">Typing text 'qaz3698' into text field 'id=loginpassword'.</msg>
+<status status="PASS" starttime="20220807 15:09:32.370" endtime="20220807 15:09:32.466"/>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<arg>//*[@id="logInModal"]//*[@class="btn btn-primary"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:32.467" level="INFO">Clicking element '//*[@id="logInModal"]//*[@class="btn btn-primary"]'.</msg>
+<status status="PASS" starttime="20220807 15:09:32.466" endtime="20220807 15:09:32.509"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:31.963" endtime="20220807 15:09:32.510"/>
+</kw>
+<kw name="Verify Login" library="blazeResources">
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>id=nameofuser</arg>
+<arg>10</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220807 15:09:32.512" endtime="20220807 15:09:35.066"/>
+</kw>
+<kw name="Get Text" library="Selenium2Library">
+<var>${actUname}</var>
+<arg>id=nameofuser</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:35.093" level="INFO">${actUname} = Welcome Lokman+1659863349</msg>
+<status status="PASS" starttime="20220807 15:09:35.066" endtime="20220807 15:09:35.094"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${actUname}</arg>
+<arg>${validUname}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20220807 15:09:35.094" endtime="20220807 15:09:35.094"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:32.511" endtime="20220807 15:09:35.094"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:31.962" endtime="20220807 15:09:35.095"/>
+</test>
+<test id="s1-t5" name="Available Categories" line="24">
+<kw name="Check Categories" library="blazeResources">
+<kw name="Get Element Count" library="Selenium2Library">
+<var>${cateCount}</var>
+<arg>//*[@id="contcont"]//*[@id="itemc"]</arg>
+<doc>Returns the number of elements matching ``locator``.</doc>
+<msg timestamp="20220807 15:09:35.114" level="INFO">${cateCount} = 3</msg>
+<status status="PASS" starttime="20220807 15:09:35.098" endtime="20220807 15:09:35.114"/>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>${cateCount}</arg>
+<arg>3</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<msg timestamp="20220807 15:09:35.115" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20220807 15:09:35.114" endtime="20220807 15:09:35.115"/>
+</kw>
+<for flavor="IN ENUMERATE">
+<var>${index}</var>
+<var>${element}</var>
+<value>@{expCate}</value>
+<iter>
+<var name="${index}">0</var>
+<var name="${element}">Phones</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${i}</var>
+<arg>${index}+1</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220807 15:09:35.116" level="INFO">${i} = 1</msg>
+<status status="PASS" starttime="20220807 15:09:35.116" endtime="20220807 15:09:35.116"/>
+</kw>
+<kw name="Get Text" library="Selenium2Library">
+<var>${actCat}</var>
+<arg>//*[@id="contcont"]//*[@id="itemc"][${i}]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:35.140" level="INFO">${actCat} = Phones</msg>
+<status status="PASS" starttime="20220807 15:09:35.116" endtime="20220807 15:09:35.140"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${element}</arg>
+<arg>${actCat}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20220807 15:09:35.141" endtime="20220807 15:09:35.141"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:35.115" endtime="20220807 15:09:35.141"/>
+</iter>
+<iter>
+<var name="${index}">1</var>
+<var name="${element}">Laptops</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${i}</var>
+<arg>${index}+1</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220807 15:09:35.142" level="INFO">${i} = 2</msg>
+<status status="PASS" starttime="20220807 15:09:35.141" endtime="20220807 15:09:35.142"/>
+</kw>
+<kw name="Get Text" library="Selenium2Library">
+<var>${actCat}</var>
+<arg>//*[@id="contcont"]//*[@id="itemc"][${i}]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:35.172" level="INFO">${actCat} = Laptops</msg>
+<status status="PASS" starttime="20220807 15:09:35.142" endtime="20220807 15:09:35.172"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${element}</arg>
+<arg>${actCat}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20220807 15:09:35.172" endtime="20220807 15:09:35.173"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:35.141" endtime="20220807 15:09:35.173"/>
+</iter>
+<iter>
+<var name="${index}">2</var>
+<var name="${element}">Monitors</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${i}</var>
+<arg>${index}+1</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220807 15:09:35.174" level="INFO">${i} = 3</msg>
+<status status="PASS" starttime="20220807 15:09:35.174" endtime="20220807 15:09:35.174"/>
+</kw>
+<kw name="Get Text" library="Selenium2Library">
+<var>${actCat}</var>
+<arg>//*[@id="contcont"]//*[@id="itemc"][${i}]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20220807 15:09:35.200" level="INFO">${actCat} = Monitors</msg>
+<status status="PASS" starttime="20220807 15:09:35.174" endtime="20220807 15:09:35.200"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${element}</arg>
+<arg>${actCat}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20220807 15:09:35.201" endtime="20220807 15:09:35.201"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:35.173" endtime="20220807 15:09:35.202"/>
+</iter>
+<status status="PASS" starttime="20220807 15:09:35.115" endtime="20220807 15:09:35.202"/>
+</for>
+<status status="PASS" starttime="20220807 15:09:35.098" endtime="20220807 15:09:35.202"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:35.097" endtime="20220807 15:09:35.203"/>
+</test>
+<test id="s1-t6" name="Product List for Mobile" line="26">
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20220807 15:09:35.581" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-15.png"&gt;&lt;img src="selenium-screenshot-15.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20220807 15:09:35.207" endtime="20220807 15:09:35.581"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:35.205" endtime="20220807 15:09:35.582"/>
+</test>
+<test id="s1-t7" name="Product List for Laptop" line="28">
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20220807 15:09:35.950" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-16.png"&gt;&lt;img src="selenium-screenshot-16.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20220807 15:09:35.585" endtime="20220807 15:09:35.950"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:35.584" endtime="20220807 15:09:35.950"/>
+</test>
+<test id="s1-t8" name="Product List for Desktop" line="30">
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20220807 15:09:36.333" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-17.png"&gt;&lt;img src="selenium-screenshot-17.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20220807 15:09:35.953" endtime="20220807 15:09:36.334"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:35.952" endtime="20220807 15:09:36.335"/>
+</test>
+<test id="s1-t9" name="Viewing Product detail" line="32">
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20220807 15:09:36.713" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-18.png"&gt;&lt;img src="selenium-screenshot-18.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20220807 15:09:36.338" endtime="20220807 15:09:36.713"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:36.337" endtime="20220807 15:09:36.715"/>
+</test>
+<test id="s1-t10" name="Add to Cart" line="34">
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20220807 15:09:37.072" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-19.png"&gt;&lt;img src="selenium-screenshot-19.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20220807 15:09:36.718" endtime="20220807 15:09:37.073"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:36.717" endtime="20220807 15:09:37.073"/>
+</test>
+<test id="s1-t11" name="View Cart" line="36">
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20220807 15:09:37.447" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-20.png"&gt;&lt;img src="selenium-screenshot-20.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20220807 15:09:37.076" endtime="20220807 15:09:37.447"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:37.075" endtime="20220807 15:09:37.447"/>
+</test>
+<test id="s1-t12" name="Checkout and place order" line="38">
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20220807 15:09:37.845" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-21.png"&gt;&lt;img src="selenium-screenshot-21.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20220807 15:09:37.450" endtime="20220807 15:09:37.846"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:37.449" endtime="20220807 15:09:37.846"/>
+</test>
+<test id="s1-t13" name="View order" line="40">
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20220807 15:09:38.226" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-22.png"&gt;&lt;img src="selenium-screenshot-22.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20220807 15:09:37.849" endtime="20220807 15:09:38.226"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:37.848" endtime="20220807 15:09:38.227"/>
+</test>
+<test id="s1-t14" name="Logout" line="42">
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20220807 15:09:38.586" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-23.png"&gt;&lt;img src="selenium-screenshot-23.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20220807 15:09:38.230" endtime="20220807 15:09:38.587"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:38.229" endtime="20220807 15:09:38.587"/>
+</test>
+<test id="s1-t15" name="Excel File MgmtTesting" line="45">
+<kw name="Append Item Name in Excel" library="blazeResources">
+<kw name="Create File" library="OperatingSystem">
+<arg>data2.xls</arg>
+<doc>Creates a file with the given content and encoding.</doc>
+<msg timestamp="20220807 15:09:38.592" level="INFO" html="true">Created file '&lt;a href="file://F:\Automation-Study\RF\demoblaze\data2.xls"&gt;F:\Automation-Study\RF\demoblaze\data2.xls&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20220807 15:09:38.591" endtime="20220807 15:09:38.592"/>
+</kw>
+<kw name="Append To File" library="OperatingSystem">
+<arg>data2.xls</arg>
+<arg>Lokman\n</arg>
+<doc>Appends the given content to the specified file.</doc>
+<msg timestamp="20220807 15:09:38.593" level="INFO" html="true">Appended to file '&lt;a href="file://F:\Automation-Study\RF\demoblaze\data2.xls"&gt;F:\Automation-Study\RF\demoblaze\data2.xls&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20220807 15:09:38.592" endtime="20220807 15:09:38.593"/>
+</kw>
+<kw name="Append To File" library="OperatingSystem">
+<arg>data2.xls</arg>
+<arg>Lokman\n</arg>
+<doc>Appends the given content to the specified file.</doc>
+<msg timestamp="20220807 15:09:38.594" level="INFO" html="true">Appended to file '&lt;a href="file://F:\Automation-Study\RF\demoblaze\data2.xls"&gt;F:\Automation-Study\RF\demoblaze\data2.xls&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20220807 15:09:38.593" endtime="20220807 15:09:38.595"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:38.591" endtime="20220807 15:09:38.595"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:38.589" endtime="20220807 15:09:38.596"/>
+</test>
+<kw name="Close All Browsers" library="Selenium2Library" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20220807 15:09:38.599" endtime="20220807 15:09:41.763"/>
+</kw>
+<status status="PASS" starttime="20220807 15:09:04.747" endtime="20220807 15:09:41.763"/>
+</suite>
+<statistics>
+<total>
+<stat pass="15" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="15" fail="0" skip="0" id="s1" name="demoBlazeSuite">demoBlazeSuite</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
